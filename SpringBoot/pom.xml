@@ -21,6 +21,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>	
 			<version>2.1.2.RELEASE</version>		 
 		</dependency>
+		<!-- below dependency was added to produce xml response -->
 	<dependency>
 		<groupId>com.fasterxml.jackson.dataformat</groupId>
 		<artifactId>jackson-dataformat-xml</artifactId>
