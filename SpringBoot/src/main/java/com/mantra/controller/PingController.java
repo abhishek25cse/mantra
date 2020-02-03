@@ -1,16 +1,24 @@
 package com.mantra.controller;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mantra.domain.Employee;
 import com.mantra.dto.UserTO;
+import com.mantra.service.PingService;
 
 @RestController
 public class PingController {
+	
+//	@Autowired
+	PingService pingService;
 	
 	@GetMapping("ping")
 	public String testService() {
@@ -19,10 +27,10 @@ public class PingController {
 	
 	@GetMapping(path = "user" , produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserTO> getUser() {
-		UserTO user =  new UserTO();		
-		user.setName("Abhishek");
-		user.setRole("dev-json");
-		ResponseEntity res = new ResponseEntity(user,HttpStatus.INTERNAL_SERVER_ERROR);
+		UserTO user = pingService.checkCall();
+	
+		ResponseEntity<UserTO> res = new ResponseEntity<UserTO>(user,HttpStatus.INTERNAL_SERVER_ERROR);
+		
 		return res;
 	}
 	
@@ -35,5 +43,15 @@ public class PingController {
 		return res;
 	}
 	
+	@GetMapping(path = "userMongo",  produces =  MediaType.APPLICATION_JSON_VALUE)	
+	public List<Employee> getUserMongo() {
+		List<Employee> emps = null;
+		emps = 	pingService.findAll();
+		return emps;
+	}
+	@GetMapping(path = "userSave",  produces =  MediaType.APPLICATION_JSON_VALUE)	
+	public String saveUser() {
+		return pingService.save();
+	}
 
 }

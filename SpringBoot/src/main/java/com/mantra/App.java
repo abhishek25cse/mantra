@@ -1,4 +1,4 @@
-package com.mantra.SpringBoot;
+package com.mantra;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
