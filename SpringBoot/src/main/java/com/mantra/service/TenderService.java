@@ -20,5 +20,16 @@ public class TenderService {
 		List<Tender> tenderTO = tenderDAO.fetchAllTenders();
 		return  tenderTO;
 	}
+	
+	public Tender saveTender(String poNumber ) {
+		return tenderDAO.saveTender(poNumber);	
+		
+	}
+	
+	public void deleteAllTender() {
+		tenderDAO.deleteAllTender();
+	}
+	
+	
 
 }

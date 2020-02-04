@@ -19,5 +19,21 @@ public class TenderDAO {
 		tenders = tenderRepo.findAll();
 		return tenders;
 	}
+	
+	public Tender saveTender(String poNumber ) {
+		Tender t = new Tender();
+		t.setHead("DDUGJY HEAD");
+		List<Tender> tenders = tenderRepo.findAll();
+		t = tenders.get(0);
+		t.setId(null);
+		t.setPoNo(poNumber);
+		 t  =  tenderRepo.save(t);
+		return  t;
+		
+	}
+	public void deleteAllTender() {
+		 tenderRepo.deleteAll();
+	}
+	
 
 }

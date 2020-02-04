@@ -8,6 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection="TENDER_DETAIL")
 public class Tender {
 	
+	public Tender() {
+		super();
+	}
 	private static final long serialVersionUID = 3153923238733181995L;
 	@Id
 	@Field(value="id")
@@ -47,12 +50,12 @@ public class Tender {
 	private String gauranteeMonth;
 	@Field(value="STATUS")
 	private String status;
-	/*public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
-	}*/
+	}
 	public String getNitNo() {
 		return nitNo;
 	}
