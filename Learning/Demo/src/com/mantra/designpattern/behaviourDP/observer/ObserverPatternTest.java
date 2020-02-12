@@ -7,8 +7,7 @@ public class ObserverPatternTest {
 		Subject subj = new Subject(10);
 		IObserver binaryObser = new BinaryObserver(subj);
 		IObserver decimalObser = new DecimalObserver(subj);
-		System.out.println("Observer Count ="+subj.getObservers().size());
-		
+		System.out.println("Observer Count ="+subj.getObservers().size());		
 		subj.setState(20);
 		
 		
