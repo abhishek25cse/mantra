@@ -1,5 +1,5 @@
 # mantra
-Central Repo for all code base
+Central Repo for all code base. This has detail for the various implementation of Spring
 
 * swagger implementation 
  	* dependency to be added
