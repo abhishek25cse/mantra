@@ -14,7 +14,7 @@ import com.mantra.domain.Tender;
 import com.mantra.service.TenderService;
 
 @RestController
-@RequestMapping(value = "tender")
+@RequestMapping(value = "api/tender")
 public class TenderController {
 	
 	@Autowired
