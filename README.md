@@ -4,14 +4,14 @@ Central Repo for all code base
 * swagger implementation 
  	* dependency to be added
 		<br/>\<dependency\>
-		<br/>	\<groupId\>io.springfox\</groupId\>
-		<br/>	\<artifactId\>springfox-swagger2\</artifactId\>
-		<br/>	\<version\>2.9.2\</version\>
+		<br/>    \<groupId\>io.springfox\</groupId\>
+		<br/>    \<artifactId\>springfox-swagger2\</artifactId\>
+		<br/> 	 \<version\>2.9.2\</version\>
 		<br/>\</dependency\>
 		<br/>\<dependency\>
-		<br/>	\<groupId\>io.springfox\</groupId\>
-		<br/>	\<artifactId\>springfox-swagger-ui\</artifactId\>
-		<br/>	\<version\>2.9.2\</version\>
+		<br/>  	 \<groupId\>io.springfox\</groupId\>
+		<br/>	 \<artifactId\>springfox-swagger-ui\</artifactId\>
+		<br/>	 \<version\>2.9.2\</version\>
 		<br/></dependency>
  	*  Annotation to be added at the SpringBoot initializer class  : @EnableSwagger2
  	*  Swagger url for the api : http://localhost:8080/swagger-ui.html#/
