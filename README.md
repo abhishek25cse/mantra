@@ -5,7 +5,7 @@ Central Repo for all code base
  	* dependency to be added
 		<br/>\<dependency\>
 		<br/>    \<groupId\>io.springfox\</groupId\>
-		<br/>    \<artifactId\>springfox-swagger2\</artifactId\>
+		<br/>  \t  \<artifactId\>springfox-swagger2\</artifactId\>
 		<br/> 	 \<version\>2.9.2\</version\>
 		<br/>\</dependency\>
 		<br/>\<dependency\>
