@@ -3,7 +3,7 @@ Central Repo for all code base
 
 * swagger implementation 
  	* dependency to be added
-		<br/><dependency>
+		<br/>&ltdependency&gt
 		<br/>	<groupId>io.springfox</groupId>
 		<br/>	<artifactId>springfox-swagger2</artifactId>
 		<br/>	<version>2.9.2</version>
