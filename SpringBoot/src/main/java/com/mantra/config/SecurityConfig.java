@@ -16,10 +16,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	/* in the method below if used fullyAuthenticated()		
 	 * instead of permitAll then the output had empty array.
-	 *  although the database had the rows.*/
+	 *  although the database had the rows.
+	 *  -- csrf().disable() is added to enable the POST call which was giving 403 error
+	 *  */
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception{
-		http.authorizeRequests()
+		http.csrf().disable().authorizeRequests()
 		.anyRequest()
 		.permitAll()
 		.and().httpBasic();

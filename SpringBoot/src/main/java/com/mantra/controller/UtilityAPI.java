@@ -20,7 +20,7 @@ public class UtilityAPI {
 	@Autowired
 	UtilityService utilityService;
 	
-	/*	This is a utility to arrange IMAGES depending as Year --> month */
+	/*	This is a utility to arrange IMAGES depending as Year --> month as in the file properties*/
 	@GetMapping(value="/imageSegregation",  produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<Void> segregateImage(@RequestParam("source") String src, @RequestParam("target") String target) throws IOException {
 		ResponseEntity<Void>  response ;
@@ -29,8 +29,7 @@ public class UtilityAPI {
 			System.out.println("Source of file copy is : "+src);
 			response= new ResponseEntity<Void>(HttpStatus.OK);	
 		} catch (Exception ex ) {
-			System.out.println("Exception segregateImage   "+ex);
-			
+			System.out.println("Exception segregateImage   "+ex);			
 			response= new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);			
 		}		
 		return response;

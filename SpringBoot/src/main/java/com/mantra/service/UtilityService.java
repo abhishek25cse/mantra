@@ -72,9 +72,7 @@ public class UtilityService {
 		if (!fN.exists()) {
 			fN.mkdirs();
 		}
-
 	}
-
 }
 
 // The below enum is now not used. Kept it just for reference
