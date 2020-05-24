@@ -3,6 +3,9 @@ package com.mantra.service;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,19 +15,34 @@ import org.springframework.stereotype.Service;
 @Service
 public class UtilityService {
 
-	public void stepOne(String src, String target) throws IOException {
+	private static final String FILEPATH_DELIMETER = "/";
+	private static final String DATE_FORMAT = "yyyy-MMM";
+	private static final String DASH= "-";
+	
+	public void stepOne(String src, String target) throws Exception {
 		HashMap<String, List<String>> yearMonthMap = new HashMap<String, List<String>>();
+		File srcDir = new File(src);
+		if (srcDir.isDirectory()) {
+			iterateOverFiles(srcDir, target, yearMonthMap);
+		} else {
+			System.out.println("Exception stepOne  No source directory found");
+			throw new Exception("No source directory found ");
+		}
+	}
 
-		File dir = new File(src);
-
+	private void iterateOverFiles(File srcDir, String target, HashMap<String, List<String>> yearMonthMap)
+			throws IOException {
 		String year = null;
 		String month = null;
-		if (dir.isDirectory()) {
-			for (File f : dir.listFiles()) {
+		DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+		for (File f : srcDir.listFiles()) {
+			if (f.isDirectory()) {
+				iterateOverFiles(f, target, yearMonthMap);
+			} else {
 				StringBuffer targetPath = new StringBuffer(target);
-				String fName = f.getName();
-				year = fName.substring(fName.indexOf("-") + 1, fName.indexOf("-") + 5);
-				month = fName.substring(fName.indexOf("-") + 5, fName.indexOf("-") + 7);
+				String fileModDdate = df.format(Files.getLastModifiedTime(Paths.get(f.getPath())).toMillis());
+				year = fileModDdate.substring(0, fileModDdate.indexOf(DASH));
+				month = fileModDdate.substring(fileModDdate.lastIndexOf(DASH)+1, fileModDdate.length());
 				if (yearMonthMap.containsKey(year)) {
 					if (!yearMonthMap.get(year).contains(month)) {
 						yearMonthMap.get(year).add(month);
@@ -33,29 +51,20 @@ public class UtilityService {
 					yearMonthMap.put(year, new ArrayList<String>());
 				}
 
-				targetPath.append("/");
+				targetPath.append(FILEPATH_DELIMETER);
 				targetPath.append(year);
 				createDir(targetPath.toString());
-				targetPath.append("/");
-				String mon = null;
-				try {
-					mon = Months.valueOf("_" + month).value;
-				} catch (Exception ex) {
-					mon = "MISC";
-				}
-
-				targetPath.append(mon);
+				targetPath.append(FILEPATH_DELIMETER);
+				targetPath.append(month);
 				createDir(targetPath.toString());
-				targetPath.append("/");
+				targetPath.append(FILEPATH_DELIMETER);
 				targetPath.append(f.getName());
 				File trgtPath = new File(targetPath.toString());
 				if (!trgtPath.exists())
-					Files.move(f.toPath(), trgtPath.toPath());
+					Files.copy(f.toPath(), trgtPath.toPath());
 
 			}
-
 		}
-
 	}
 
 	private void createDir(String path) throws IOException {
@@ -68,6 +77,7 @@ public class UtilityService {
 
 }
 
+// The below enum is now not used. Kept it just for reference
 enum Months {
 	_01("JANUARY"), _02("FEBRUARY"), _03("MARCH"), _04("APRIL"), _05("MAY"), _06("JUNE"), _07("JULY"), _08(
 			"AUGUST"), _09("SEPTEMBER"), _10("OCTOBER"), _11("NOVEMBER"), _12("DECEMBER");

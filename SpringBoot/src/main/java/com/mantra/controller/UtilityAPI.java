@@ -22,13 +22,15 @@ public class UtilityAPI {
 	
 	/*	This is a utility to arrange IMAGES depending as Year --> month */
 	@GetMapping(value="/imageSegregation",  produces = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<Void> segregateImage(@RequestParam("src") String src, @RequestParam("tgt") String target) throws IOException {
+	public ResponseEntity<Void> segregateImage(@RequestParam("source") String src, @RequestParam("target") String target) throws IOException {
 		ResponseEntity<Void>  response ;
 		try {
 			utilityService.stepOne(src, target);
 			System.out.println("Source of file copy is : "+src);
 			response= new ResponseEntity<Void>(HttpStatus.OK);	
 		} catch (Exception ex ) {
+			System.out.println("Exception segregateImage   "+ex);
+			
 			response= new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);			
 		}		
 		return response;
