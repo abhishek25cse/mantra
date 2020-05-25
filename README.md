@@ -20,4 +20,15 @@ Central Repo for all code base. This has detail for the various implementation o
 	 *  added API which copied the file from one location to another.
 		<br/>Assumption is that file name would be containing yearMonth
 
+* MongoRepository
+	 * implemented find and delete by a field using custom method,criteria added
+
+
+
+
+# TODO
+* Transaction management with Mongorepository.
+* MongoRepository with native query. ConfigAPI : /deleteFieldCodeType2
+
+
 	

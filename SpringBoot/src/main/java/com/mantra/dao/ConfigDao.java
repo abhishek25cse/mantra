@@ -18,6 +18,10 @@ public class ConfigDao {
 		return configMapRepo.findAll();
 	}
 	
+	public List<ConfigMap> fetchConfigMapOnField(String field) {		
+		return configMapRepo.findByField(field);
+	}
+	
 	public ConfigMap saveConfigMap(ConfigMap configMap) {
 		return configMapRepo.save(configMap);
 	}
@@ -26,10 +30,16 @@ public class ConfigDao {
 		return configMapRepo.deleteConfigMapByField(configMap.getField());
 	}
 	
-	public void deleteAllConfigMap() {
-		configMapRepo.deleteAll();
+	public Long deleteConfigMapFieldCodeParam(String field, String code) {
+		return configMapRepo.deleteConfigMapByFieldAndCodeParam(field, code);
 	}
 	
+	public ConfigMap deleteConfigMapFieldCodeQuery(String field, String code) {
+		return configMapRepo.deleteConfigMapByFieldAndCodeQuery(field, code);
+	}
 	
+	public void deleteAllConfigMap() {
+		configMapRepo.deleteAll();
+	}	
 
 }

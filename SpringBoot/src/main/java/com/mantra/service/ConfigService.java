@@ -21,20 +21,36 @@ public class ConfigService {
 		 List<ConfigMap> configList =  configDao.fetchConfigMap();
 		 return configList.stream().collect(Collectors.
 				 groupingBy(ConfigMap:: getField));
-		/* return configList.stream().collect(Collectors.
-				 groupingBy(ConfigMap:: getField, Collectors.mapping(ConfigMap::getField, Collectors.toList())));*/
+	}
+	
+	public List<ConfigMap> fetchConfigMapOnField(String field) {		
+		return  configDao.fetchConfigMapOnField(field);
 	}
 
 	public ConfigMap saveConfigMap(ConfigMap cMap) {
 		return configDao.saveConfigMap(cMap);
 	}
 	
-	public Long deleteConfigMap(ConfigMap cMap) {
+	public Long deleteConfigMap(ConfigMap cMap) {		
 		return configDao.deleteConfigMap(cMap);
 	}
+	
+	public Long deleteConfigMapFieldCodeParam(String field, String code) {
+		if(null == field || null == code) 
+			return null;
+		return configDao.deleteConfigMapFieldCodeParam(field, code);
+	}	
+	
+	public ConfigMap deleteConfigMapFieldCodeQuery(String field, String code) {
+		if(null == field || null == code) 
+			return null;
+		return configDao.deleteConfigMapFieldCodeQuery(field, code);
+	}	
 	
 	public void deleteAllConfigMap() {
 		configDao.deleteAllConfigMap();
 	}
+
+	
 
 }
