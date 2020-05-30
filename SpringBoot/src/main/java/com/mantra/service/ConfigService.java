@@ -19,8 +19,8 @@ public class ConfigService {
 	
 	public Map<String, List<ConfigMap>> fetchConfigMap() {
 		 List<ConfigMap> configList =  configDao.fetchConfigMap();
-		 return configList.stream().collect(Collectors.
-				 groupingBy(ConfigMap:: getField));
+		 return null;/*configList.stream().collect(Collectors.
+				 groupingBy(ConfigMap:: getField));*/
 	}
 	
 	public List<ConfigMap> fetchConfigMapOnField(String field) {		

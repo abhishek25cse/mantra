@@ -26,9 +26,12 @@ Central Repo for all code base. This has detail for the various implementation o
 
 
 
-# TODO
+## TO-DO
 * Transaction management with Mongorepository.
 * MongoRepository with native query. ConfigAPI : /deleteFieldCodeType2
+* Spring Security
+* Caching 
+* issue with the update of Tender_Detail, inserted as ObjectId and Updated as String
 
 
 	

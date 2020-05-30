@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.mantra.domain.Tender;
-import com.mantra.repository.TenderDetailRepository;
+import com.mantra.repository.TenderRepository;
 
 @Component
 public class TenderDAO {
 	@Autowired
-	private TenderDetailRepository tenderRepo;
+	private TenderRepository tenderRepo;
 	
 	public List<Tender> fetchAllTenders() {
 		List<Tender> tenders = new ArrayList<Tender>();
@@ -33,6 +33,31 @@ public class TenderDAO {
 	}
 	public void deleteAllTender() {
 		 tenderRepo.deleteAll();
+	}
+
+	public Tender createTender(Tender tender) {		
+		return tenderRepo.save(tender);
+	}
+
+	public List<Tender> changeTenderStatus(Tender tender) {		
+		List<Tender> tenders = tenderRepo.findByPoNo(tender.getPoNo());		
+		/*tenders.stream().forEach(t-> t.setStatus(tender.getStatus() ) ) ;*/
+		List<Tender> tendersFinal = new ArrayList<Tender>(); 
+		for(Tender t : tenders) {
+			 //t.setId(null);
+			 t.setStatus(tender.getStatus());
+			 tendersFinal.add(tenderRepo.save(t));
+		}
+		System.out.println(tenders);
+		return tendersFinal;
+	}
+
+	public List<Tender> findByPoNo(String poNum) {		
+		return tenderRepo.findByPoNo(poNum);
+	}
+
+	public Long deleteByPoNo(String poNum) {
+		return tenderRepo.deleteByPoNo(poNum);
 	}
 	
 

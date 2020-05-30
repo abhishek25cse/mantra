@@ -1,7 +1,10 @@
 package com.mantra.domain;
 
-//@Document
-public class Employee {/*
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class Employee {
 	
 	@Id
 	private String _id;
@@ -34,4 +37,4 @@ public class Employee {/*
 		this.pin = pin;
 	}
 
-*/}
+}
