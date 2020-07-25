@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mantra.service.UtilityService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("api/utility")
 public class UtilityAPI {
@@ -21,11 +23,27 @@ public class UtilityAPI {
 	UtilityService utilityService;
 	
 	/*	This is a utility to arrange IMAGES depending as Year --> month as in the file properties*/
-	@GetMapping(value="/imageSegregation",  produces = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<Void> segregateImage(@RequestParam("source") String src, @RequestParam("target") String target) throws IOException {
+	@ApiOperation(value = "Image Segregation by file properties  ", response = ResponseEntity.class)
+	@GetMapping(value="/imageSegregationByProperties",  produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Void> segregateImageByProperties(@RequestParam("source") String src, @RequestParam("target") String target) throws IOException {
 		ResponseEntity<Void>  response ;
 		try {
-			utilityService.stepOne(src, target);
+			utilityService.stepOneByProperties(src, target);
+			System.out.println("Source of file copy is : "+src);
+			response= new ResponseEntity<Void>(HttpStatus.OK);	
+		} catch (Exception ex ) {
+			System.out.println("Exception segregateImage   "+ex);			
+			response= new ResponseEntity<Void>(HttpStatus.INTERNAL_SERVER_ERROR);			
+		}		
+		return response;
+	}
+	
+	@ApiOperation(value = "Image Segregation by file NAME  ", response = ResponseEntity.class)
+	@GetMapping(value="/imageSegregationByName",  produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Void> segregateImagebyName(@RequestParam("source") String src, @RequestParam("target") String target) throws IOException {
+		ResponseEntity<Void>  response ;
+		try {
+			utilityService.stepOneByName(src, target);
 			System.out.println("Source of file copy is : "+src);
 			response= new ResponseEntity<Void>(HttpStatus.OK);	
 		} catch (Exception ex ) {
