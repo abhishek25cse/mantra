@@ -1,4 +1,4 @@
-# mantra
+# Mantra
 Central Repo for all code base. This has detail for the various implementation of Spring
 
 * swagger implementation 
