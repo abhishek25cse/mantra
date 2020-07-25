@@ -15,6 +15,16 @@ Central Repo for all code base. This has detail for the various implementation o
 		<br/></dependency>
  	*  Annotation to be added at the SpringBoot initializer class  : @EnableSwagger2
  	*  Swagger url for the api : http://localhost:8080/swagger-ui.html#/
+	*  if still the swagger gives 404 error then add the following code
+		@configuration
+		@EnableWebMvc
+		public class SwaggerConfig extends WebMvcConfigurerAdapter {
+		@Override
+		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    		registry.addResourceHandler("**/**").addResourceLocations("classpath:/META-INF/resources/");
+   		registry.addResourceHandler("**/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+	}
+	}
 
 * Ulility service
 	 *  added API which copied the file from one location to another.
