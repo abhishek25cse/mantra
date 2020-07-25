@@ -15,7 +15,7 @@ Central Repo for all code base. This has detail for the various implementation o
 		<br/></dependency>
  	*  Annotation to be added at the SpringBoot initializer class  : @EnableSwagger2
  	*  Swagger url for the api : http://localhost:8080/swagger-ui.html#/
-	*  if still the swagger gives 404 error then add the following code
+	*  If still the swagger gives 404 error then add the following code
 		@configuration
 		@EnableWebMvc
 		public class SwaggerConfig extends WebMvcConfigurerAdapter {
